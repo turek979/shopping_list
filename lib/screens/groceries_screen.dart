@@ -10,29 +10,20 @@ class GroceriesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Your Groceries'),
       ),
-      body: ListView.builder(itemBuilder: (context, int index) {
-        return const Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            children: [
-              SizedBox(
-                height: 20,
-                width: 20,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.amber),
-                ),
-              ),
-              SizedBox(width: 30),
-              Expanded(
-                child: Text(
-                  'Milk',
-                ),
-              ),
-              Text('1'),
-            ],
+      body: ListView.builder(
+        itemCount: groceryItems.length,
+        itemBuilder: (ctx, index) => ListTile(
+          title: Text(groceryItems[index].name),
+          leading: Container(
+            width: 24,
+            height: 24,
+            color: groceryItems[index].category.color,
           ),
-        );
-      }),
+          trailing: Text(
+            groceryItems[index].quantity.toString(),
+          ),
+        ),
+      ),
     );
   }
 }
